@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login Page</title>
+	<style>
+		.form{
+			border: 1px white;
+			background-color: white;
+			
+		}
+		video {
+			position: fixed;
+			top: 50%;
+			left: 50%;
+			min-width: 100%;
+			min-height: 100%;
+			width: auto;
+			height: auto;
+			z-index: -100;
+			transform: translateX(-50%) translateY(-50%);
+			background: url('your-fallback-image.jpg') no-repeat;
+			background-size: cover;
+		}
+
+		.login-form {
+			position: absolute;
+			top: 30%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			z-index: 1;
+		}
+		
+		input[type="submit"] {
+			display: block;
+			margin: 0 auto;
+			background-color: red;
+			color: white(250, 247, 247, 0.991);
+			border: none;
+			padding: 10px 20px;
+			font-size: 18px;
+			border-radius: 5px;
+			cursor: pointer;
+			transition: background-color 0.3s ease-in-out;
+		}
+		
+		input[type="submit"].valid {
+			background-color: green;
+		}
+		
+		
+		input[type="text"], input[type="password"] {
+			background-color: white;
+			color: green;
+			font-weight: bold;
+			border: none;
+			padding: 10px 20px;
+			font-size: 18px;
+			border-radius: 5px;
+		}
+
+		.invalid {
+			background-color: red;
+		}
+		.white-h{
+			color: black;
+		}
+		.a{
+			font-size: 15pt;
+		}
+	</style>
+	<script>
+		function validateForm() {
+			var x = document.forms["loginForm"]["username"].value;
+			var y = document.forms["loginForm"]["password"].value;
+			if (x == "" || y == "") {
+				document.getElementById("loginButton").classList.add("invalid");
+				document.getElementById("loginButton").classList.remove("valid");
+				return false;
+			} else {
+				document.getElementById("loginButton").classList.add("valid");
+				document.getElementById("loginButton").classList.remove("invalid");
+			}
+		}
+
+		window.onload = function() {
+			document.getElementById("username").addEventListener("input", function() {
+				validateForm();
+			});
+
+			document.getElementById("password").addEventListener("input", function() {
+				validateForm();
+			});
+		}
+	</script>
+</head>
+<body>
+	
+	  
+	<video autoplay muted loop>
+		<source src="login video2.mp4" type="video/mp4">
+		<!-- fallback image in case the video fails to load -->
+		<img src="your-fallback-image.jpg" alt="fallback image">
+	</video>
+	<div class="login-form">
+		<h1 class="white-h">Join our community</h1>
+		<form name="loginForm" action="login.php" method="post" onsubmit="return validateForm()">
+			<label class="a"><b>Username:</b></label>
+			<input type="text" id="username" name="username" required><br><br>
+			<label class="a"><b>Password:</b></label>
+			<input type="password" id="password" name="password" required><br><br>
+			<input type="submit" id="loginButton" value="Login">
+		</form>
+	</div>
+</body>
+</html>
